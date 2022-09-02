@@ -1,0 +1,149 @@
+apiVersion: v1
+entries:
+  blender-chart:
+  - annotations:
+      catalog.cattle.io/display-name: Blender
+    apiVersion: v2
+    appVersion: 3.1.2
+    created: "2022-08-24T12:03:25.092124412+08:00"
+    description: Customized Blender Helm chart for Kubernetes
+    digest: 3025fd02f8475944e30fd5f6c1d6faae15473b3547c62ee820a6311abbaf8bec
+    icon: https://download.blender.org/branding/community/blender_community_badge_white.png
+    name: blender-chart
+    type: application
+    urls:
+    - charts/blender-chart-1.0.0.tgz
+    version: 1.0.0
+  cert-manager:
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v1
+    appVersion: v1.7.1
+    created: "2022-08-24T12:03:25.020129294+08:00"
+    description: A Helm chart for cert-manager
+    digest: b109ca84f8e11bd2a49f97f52355e2cd113f69f25f6678bb1aa24abc488cb591
+    home: https://github.com/jetstack/cert-manager
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+    name: cert-manager
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - charts/cert-manager-v1.7.1.tgz
+    version: v1.7.1
+  descheduler:
+  - annotations:
+      catalog.cattle.io/display-name: Descheduler
+      catalog.cattle.io/namespace: kube-system
+      catalog.cattle.io/os: linux
+      catalog.cattle.io/release-name: descheduler
+      catalog.cattle.io/type: cluster-tool
+    apiVersion: v1
+    appVersion: 0.22.1
+    created: "2022-08-25T11:12:22.44974576+08:00"
+    description: Descheduler for Kubernetes is used to rebalance clusters by evicting
+      pods that can potentially be scheduled on better nodes. In the current implementation,
+      descheduler does not schedule replacement of evicted pods but relies on the
+      default scheduler for that.
+    digest: f0cc760e9f57f24b5070c0ef028f0638df2221433501f7e99a841c7679ce40ff
+    home: https://github.com/kubernetes-sigs/descheduler
+    icon: https://kubernetes.io/images/favicon.png
+    keywords:
+    - kubernetes
+    - descheduler
+    - kube-scheduler
+    maintainers:
+    - email: kubernetes-sig-scheduling@googlegroups.com
+      name: Kubernetes SIG Scheduling
+    name: descheduler
+    sources:
+    - https://github.com/kubernetes-sigs/descheduler
+    urls:
+    - charts/descheduler-1.0.0.tgz
+    version: 1.0.0
+  postgresql:
+  - annotations:
+      catalog.cattle.io/display-name: PostgreSQL
+    apiVersion: v2
+    appVersion: "14.2"
+    created: "2022-08-24T12:03:25.080125226+08:00"
+    description: A PostgreSQL Helm chart for Kubernetes
+    digest: 7d1282c21b3e7885eb70d7ac54980384eab9ccc853327791b60b3a838a7b3025
+    icon: https://wiki.postgresql.org/images/9/9a/PostgreSQL_logo.3colors.540x557.png
+    name: postgresql
+    type: application
+    urls:
+    - charts/postgresql-1.0.0.tgz
+    version: 1.0.0
+  redmine-chart:
+  - annotations:
+      catalog.cattle.io/display-name: Redmine
+    apiVersion: v2
+    appVersion: 5.0.0
+    created: "2022-08-23T15:29:21.956123551+08:00"
+    dependencies:
+    - name: postgresql
+      repository: '@infortrend'
+      version: 0.1.3
+    description: Redmine Helm chart for Kubernetes
+    digest: c78ec6e508287bdc4f9ed9d52cce6dfde3b5fc397894bae3dda7b0c9d4819a33
+    icon: https://www.redmine.org/attachments/3462/redmine_fluid_icon.png
+    name: redmine-chart
+    type: application
+    urls:
+    - charts/redmine-chart-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      catalog.cattle.io/display-name: Redmine
+    apiVersion: v2
+    appVersion: 5.0.0
+    created: "2022-08-24T12:03:25.208116548+08:00"
+    dependencies:
+    - name: postgresql
+      repository: '@infortrend'
+      version: 0.1.3
+    description: Redmine Helm chart for Kubernetes
+    digest: f316da70fb2d31c51740ca9aca8d734eaf6a50fe9ceaa12137032e0e0e359574
+    icon: https://www.redmine.org/attachments/3462/redmine_fluid_icon.png
+    name: redmine-chart
+    type: application
+    urls:
+    - charts/redmine-chart-1.0.0.tgz
+    version: 1.0.0
+  resourcespace-chart:
+  - annotations:
+      catalog.cattle.io/display-name: Pure-ResourceSpace
+    apiVersion: v2
+    appVersion: "9.7"
+    created: "2022-08-24T14:45:06.300375981+08:00"
+    description: Pure ResourceSpace Helm chart for Kubernetes
+    digest: 8413006b4cd06da5edccefedc78ae42d7e48cc515151646e3ed42c03327df9a5
+    icon: https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_67f119c0dfa546f8911aa9b1ed3f25f0/resourcespace.png
+    name: resourcespace-chart
+    type: application
+    urls:
+    - charts/resourcespace-chart-1.0.0.tgz
+    version: 1.0.0
+  rsai-single-node:
+  - annotations:
+      catalog.cattle.io/display-name: ResourceSpace-IFTAI
+    apiVersion: v2
+    appVersion: 9.7.21.10
+    created: "2022-08-24T12:03:25.060126582+08:00"
+    description: ResourceSpace chart with Infortrend AI Plugin on one pod for Kubernetes
+    digest: 2672d7f19a89992671f6bcd1c8d711126c4edef13ac75b75aefc1d3ee6dc09b3
+    icon: https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_67f119c0dfa546f8911aa9b1ed3f25f0/resourcespace.png
+    name: rsai-single-node
+    type: application
+    urls:
+    - charts/rsai-single-node-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-09-02T09:28:23+08:00"
+serverInfo: {}
