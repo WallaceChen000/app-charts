@@ -5,7 +5,7 @@ entries:
       catalog.cattle.io/display-name: Blender
     apiVersion: v2
     appVersion: 3.1.2
-    created: "2022-08-24T12:03:25.092124412+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     description: Customized Blender Helm chart for Kubernetes
     digest: 3025fd02f8475944e30fd5f6c1d6faae15473b3547c62ee820a6311abbaf8bec
     icon: https://download.blender.org/branding/community/blender_community_badge_white.png
@@ -19,9 +19,9 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v1
     appVersion: v1.7.1
-    created: "2022-08-24T12:03:25.020129294+08:00"
+    created: "2022-09-15T09:27:54.276218621+08:00"
     description: A Helm chart for cert-manager
-    digest: b109ca84f8e11bd2a49f97f52355e2cd113f69f25f6678bb1aa24abc488cb591
+    digest: ac154eaa3c98de03480c12f94ac75c6e56266ee694591a50f2b2278bd51482df
     home: https://github.com/jetstack/cert-manager
     icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
     keywords:
@@ -38,6 +38,28 @@ entries:
     urls:
     - charts/cert-manager-v1.7.1.tgz
     version: v1.7.1
+  dcgm-exporter:
+  - apiVersion: v2
+    appVersion: 2.6.10
+    created: "2022-09-15T09:28:15.984724754+08:00"
+    description: A Helm chart for DCGM exporter
+    digest: 1fda000c8f7f0e83b4b20daf101b15678f26024226e4ea68823169fac1e5d193
+    home: https://github.com/nvidia/dcgm-exporter/
+    icon: https://assets.nvidiagrid.net/ngc/logos/DCGM.png
+    keywords:
+    - gpu
+    - cuda
+    - compute
+    - monitoring
+    - telemetry
+    - tesla
+    kubeVersion: '>= 1.13.0-0'
+    name: dcgm-exporter
+    sources:
+    - https://github.com/nvidia/dcgm-exporter
+    urls:
+    - charts/dcgm-exporter-2.6.10.tgz
+    version: 2.6.10
   descheduler:
   - annotations:
       catalog.cattle.io/display-name: Descheduler
@@ -47,7 +69,7 @@ entries:
       catalog.cattle.io/type: cluster-tool
     apiVersion: v1
     appVersion: 0.22.1
-    created: "2022-08-25T11:12:22.44974576+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     description: Descheduler for Kubernetes is used to rebalance clusters by evicting
       pods that can potentially be scheduled on better nodes. In the current implementation,
       descheduler does not schedule replacement of evicted pods but relies on the
@@ -68,12 +90,36 @@ entries:
     urls:
     - charts/descheduler-1.0.0.tgz
     version: 1.0.0
+  nvidia-device-plugin:
+  - apiVersion: v2
+    appVersion: 0.12.2
+    created: "2022-09-15T09:27:31.71969284+08:00"
+    dependencies:
+    - alias: nfd
+      condition: nfd.enabled,gfd.enabled
+      name: node-feature-discovery
+      repository: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+      version: 0.11.0
+    - alias: gfd
+      condition: gfd.enabled
+      name: gpu-feature-discovery
+      repository: ""
+      version: 0.6.1
+    description: A Helm chart for the nvidia-device-plugin on Kubernetes
+    digest: 1ddbf79feb3076937fbcf22808d233f5b74af143a8b3cf4a670548bce8e39d2d
+    home: https://github.com/NVIDIA/k8s-device-plugin
+    kubeVersion: '>= 1.10.0-0'
+    name: nvidia-device-plugin
+    type: application
+    urls:
+    - charts/nvidia-device-plugin-0.12.2.tgz
+    version: 0.12.2
   postgresql:
   - annotations:
       catalog.cattle.io/display-name: PostgreSQL
     apiVersion: v2
     appVersion: "14.2"
-    created: "2022-08-24T12:03:25.080125226+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     description: A PostgreSQL Helm chart for Kubernetes
     digest: 7d1282c21b3e7885eb70d7ac54980384eab9ccc853327791b60b3a838a7b3025
     icon: https://wiki.postgresql.org/images/9/9a/PostgreSQL_logo.3colors.540x557.png
@@ -85,7 +131,7 @@ entries:
   rancher:
   - apiVersion: v1
     appVersion: v2.6.4
-    created: "2022-08-24T12:03:25.072125769+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     description: Install Rancher Server to manage Kubernetes clusters across providers.
     digest: 8bce6b9610f9248f0bccd1641da135213b2df25d32d65698b128b05e3cb761ea
     home: https://rancher.com
@@ -103,12 +149,156 @@ entries:
     urls:
     - charts/rancher-2.6.4.tgz
     version: 2.6.4
+  rancher-monitoring:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      artifacthub.io/operator: "true"
+      catalog.cattle.io/auto-install: rancher-monitoring-crd=match
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/deploys-on-os: windows
+      catalog.cattle.io/display-name: Monitoring
+      catalog.cattle.io/kube-version: '>= 1.16.0-0 < 1.25.0-0'
+      catalog.cattle.io/namespace: cattle-monitoring-system
+      catalog.cattle.io/permits-os: linux,windows
+      catalog.cattle.io/provides-gvr: monitoring.coreos.com.prometheus/v1
+      catalog.cattle.io/rancher-version: '>= 2.6.0-0 < 2.7.0-0'
+      catalog.cattle.io/release-name: rancher-monitoring
+      catalog.cattle.io/requests-cpu: 4500m
+      catalog.cattle.io/requests-memory: 4000Mi
+      catalog.cattle.io/type: cluster-tool
+      catalog.cattle.io/ui-component: monitoring
+      catalog.cattle.io/upstream-version: 19.0.3
+    apiVersion: v2
+    appVersion: 0.50.0
+    created: "2022-09-15T09:18:48.747554256+08:00"
+    dependencies:
+    - condition: grafana.enabled
+      name: grafana
+      repository: file://./charts/grafana
+    - condition: hardenedKubelet.enabled
+      name: hardenedKubelet
+      repository: file://./charts/hardenedKubelet
+    - condition: hardenedNodeExporter.enabled
+      name: hardenedNodeExporter
+      repository: file://./charts/hardenedNodeExporter
+    - condition: k3sServer.enabled
+      name: k3sServer
+      repository: file://./charts/k3sServer
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: file://./charts/kube-state-metrics
+    - condition: kubeAdmControllerManager.enabled
+      name: kubeAdmControllerManager
+      repository: file://./charts/kubeAdmControllerManager
+    - condition: kubeAdmEtcd.enabled
+      name: kubeAdmEtcd
+      repository: file://./charts/kubeAdmEtcd
+    - condition: kubeAdmProxy.enabled
+      name: kubeAdmProxy
+      repository: file://./charts/kubeAdmProxy
+    - condition: kubeAdmScheduler.enabled
+      name: kubeAdmScheduler
+      repository: file://./charts/kubeAdmScheduler
+    - condition: prometheus-adapter.enabled
+      name: prometheus-adapter
+      repository: file://./charts/prometheus-adapter
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: file://./charts/prometheus-node-exporter
+    - condition: rke2ControllerManager.enabled
+      name: rke2ControllerManager
+      repository: file://./charts/rke2ControllerManager
+    - condition: rke2Etcd.enabled
+      name: rke2Etcd
+      repository: file://./charts/rke2Etcd
+    - condition: rke2IngressNginx.enabled
+      name: rke2IngressNginx
+      repository: file://./charts/rke2IngressNginx
+    - condition: rke2Proxy.enabled
+      name: rke2Proxy
+      repository: file://./charts/rke2Proxy
+    - condition: rke2Scheduler.enabled
+      name: rke2Scheduler
+      repository: file://./charts/rke2Scheduler
+    - condition: rkeControllerManager.enabled
+      name: rkeControllerManager
+      repository: file://./charts/rkeControllerManager
+    - condition: rkeEtcd.enabled
+      name: rkeEtcd
+      repository: file://./charts/rkeEtcd
+    - condition: rkeIngressNginx.enabled
+      name: rkeIngressNginx
+      repository: file://./charts/rkeIngressNginx
+    - condition: rkeProxy.enabled
+      name: rkeProxy
+      repository: file://./charts/rkeProxy
+    - condition: rkeScheduler.enabled
+      name: rkeScheduler
+      repository: file://./charts/rkeScheduler
+    - condition: global.cattle.windows.enabled
+      name: windowsExporter
+      repository: file://./charts/windowsExporter
+    description: Collects several related Helm charts, Grafana dashboards, and Prometheus
+      rules combined with documentation and scripts to provide easy to operate end-to-end
+      Kubernetes cluster monitoring with Prometheus using the Prometheus Operator.
+    digest: 17a6a3c45df4f1af17ea8557659d39d68f5a98b1ceff9fc0cbbae856b25ae130
+    home: https://github.com/prometheus-operator/kube-prometheus
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    - monitoring
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: vsliouniaev
+    - name: bismarck
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: github.gkarthiks@gmail.com
+      name: gkarthiks
+    - email: scott@r6by.com
+      name: scottrigby
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: arvind.iyengar@suse.com
+      name: Arvind
+    - email: jiaqi.luo@suse.com
+      name: Jack
+      url: https://github.com/jiaqiluo
+    name: rancher-monitoring
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - charts/rancher-monitoring-100.1.3+up19.0.3.tgz
+    version: 100.1.3+up19.0.3
+  rancher-monitoring-crd:
+  - annotations:
+      catalog.cattle.io/certified: rancher
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/namespace: cattle-monitoring-system
+      catalog.cattle.io/release-name: rancher-monitoring-crd
+    apiVersion: v1
+    created: "2022-09-15T09:19:04.491917663+08:00"
+    description: Installs the CRDs for rancher-monitoring.
+    digest: ef76993ebb4e074f3eaaf7d127762c291cb384f1747b2657571894d4a1b1e8a9
+    name: rancher-monitoring-crd
+    type: application
+    urls:
+    - charts/rancher-monitoring-crd-100.1.3+up19.0.3.tgz
+    version: 100.1.3+up19.0.3
   redmine-chart:
   - annotations:
       catalog.cattle.io/display-name: Redmine
     apiVersion: v2
     appVersion: 5.0.0
-    created: "2022-08-23T15:29:21.956123551+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     dependencies:
     - name: postgresql
       repository: '@infortrend'
@@ -125,7 +315,7 @@ entries:
       catalog.cattle.io/display-name: Redmine
     apiVersion: v2
     appVersion: 5.0.0
-    created: "2022-08-24T12:03:25.208116548+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     dependencies:
     - name: postgresql
       repository: '@infortrend'
@@ -143,7 +333,7 @@ entries:
       catalog.cattle.io/display-name: Pure-ResourceSpace
     apiVersion: v2
     appVersion: "9.7"
-    created: "2022-08-24T14:45:06.300375981+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     description: Pure ResourceSpace Helm chart for Kubernetes
     digest: 8413006b4cd06da5edccefedc78ae42d7e48cc515151646e3ed42c03327df9a5
     icon: https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_67f119c0dfa546f8911aa9b1ed3f25f0/resourcespace.png
@@ -157,7 +347,7 @@ entries:
       catalog.cattle.io/display-name: ResourceSpace-IFTAI
     apiVersion: v2
     appVersion: 9.7.21.10
-    created: "2022-08-24T12:03:25.060126582+08:00"
+    created: "2022-09-15T09:16:23.732197088+08:00"
     description: ResourceSpace chart with Infortrend AI Plugin on one pod for Kubernetes
     digest: 2672d7f19a89992671f6bcd1c8d711126c4edef13ac75b75aefc1d3ee6dc09b3
     icon: https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_67f119c0dfa546f8911aa9b1ed3f25f0/resourcespace.png
@@ -166,5 +356,34 @@ entries:
     urls:
     - charts/rsai-single-node-1.0.0.tgz
     version: 1.0.0
-generated: "2022-09-02T09:46:08+08:00"
+  strimzi-kafka-operator:
+  - apiVersion: v2
+    appVersion: 0.30.0
+    created: "2022-07-20T17:06:16+08:00"
+    description: 'Strimzi: Apache Kafka running on Kubernetes'
+    digest: 1a1b921accbf597a121f1ae4a1c2e467071a1d9512de3f325b953f402c2f7aac
+    home: https://strimzi.io/
+    icon: https://raw.githubusercontent.com/strimzi/strimzi-kafka-operator/main/documentation/logo/strimzi_logo.png
+    keywords:
+    - kafka
+    - queue
+    - stream
+    - event
+    - messaging
+    - datastore
+    - topic
+    maintainers:
+    - name: Frawless
+    - name: ppatierno
+    - name: samuel-hawker
+    - name: scholzj
+    - name: tombentley
+    - name: sknot-rh
+    name: strimzi-kafka-operator
+    sources:
+    - https://github.com/strimzi/strimzi-kafka-operator
+    urls:
+    - charts/strimzi-kafka-operator-helm-3-chart-0.30.0.tgz
+    version: 0.30.0
+generated: "2022-09-15T11:08:00+08:00"
 serverInfo: {}
